@@ -14,11 +14,15 @@ public class Person
     private uint age;
     private Activity activity;
 
-    public Person(string name)
+    public Person(string firstName, string lastName)
     {
-        string[] nameParts = name.Split(" ");
-        firstName = nameParts[0];
-        lastName = nameParts[1];
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public Activity GetActivity()
+    {
+        return activity;
     }
 
     public void AdvanceTime()

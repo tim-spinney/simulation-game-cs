@@ -10,9 +10,9 @@ public class Simulator
     {
         persons = new List<Person>();
         
-        persons.Add(new Person("Hugh Mann"));
-        persons.Add(new Person("Jane Doe"));
-        persons.Add(new Person("Another person"));
+        persons.Add(new Person("Hugh", "Mann"));
+        persons.Add(new Person("Jane", "Doe"));
+        persons.Add(new Person("Another", "person"));
     }
     
     public void SimulateForever()
