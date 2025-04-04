@@ -12,6 +12,7 @@ public class Person
     private int hunger;
     private int energy;
     private uint age;
+    private Activity activity;
 
     public Person(string name)
     {
@@ -22,8 +23,33 @@ public class Person
 
     public void AdvanceTime()
     {
-        hunger++;
-        energy--;
+        if (activity == Activity.Eating)
+        {
+            hunger -= 5;
+        }
+        else
+        {
+            hunger++;
+        }
+
+        if (activity == Activity.Sleeping)
+        {
+            energy += 5;
+        }
+        else
+        {
+            energy--;
+        }
+
+        if (hunger > 40)
+        {
+            activity = Activity.Eating;
+        }
+
+        if (energy < 40)
+        {
+            activity = Activity.Sleeping;
+        }
     }
 
     public string GetName()
