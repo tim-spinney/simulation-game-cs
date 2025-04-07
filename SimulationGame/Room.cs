@@ -9,6 +9,10 @@ public class Room
     private uint currentNumGuests;
     private bool isOpen;
 
+    /* Preconditions:
+     * - opensAt must be greater than closesAt or nobody will ever be allowed in
+     * - opensAt and closesAt must be less than 1440 or nobody will ever be allowed in
+     */
     public Room(List<Person> employees, uint opensAt, uint closesAt, uint maxCapacity)
     {
         this.employees = employees;
@@ -52,7 +56,9 @@ public class Room
 
     public void AdvanceTime(uint currentTime)
     {
-        isOpen = (currentTime % 1440) >= opensAt && 
-                 (currentTime % 1440) <= closesAt;
+        isOpen = (currentTime % MINUTES_PER_DAY) >= opensAt && 
+                 (currentTime % MINUTES_PER_DAY) <= closesAt;
     }
+
+    private const uint MINUTES_PER_DAY = 60 * 24;
 }

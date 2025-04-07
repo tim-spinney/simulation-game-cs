@@ -1,0 +1,15 @@
+TestProject1 (6 tests) Success
+  TestProject1 (6 tests) Success
+    PersonTest (6 tests) Success
+      EatsWhenHungry (1 test) Success
+        Person switches to eating when hungry Success
+      PrioritizesSleepingOverEating (1 test) Success
+        Person prioritizes sleeping over eating Success
+      SleepsWhenLowOnEnergy (1 test) Success
+        Person switches to sleeping when low on energy Success
+      StartsIdle (1 test) Success
+        Person starts out idling by default Success
+      StopsEatingWhenNoLongerHungry (1 test) Success
+        Person stops eating when no longer hungry Success
+      StopsSleepingWhenNoLongerTired (1 test) Success
+        Person stops sleeping when no longer tired Success
