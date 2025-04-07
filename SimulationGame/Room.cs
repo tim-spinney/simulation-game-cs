@@ -17,6 +17,16 @@ public class Room
         this.maxCapacity = maxCapacity;
     }
 
+    public void Hire(Person person)
+    {
+        employees.Add(person);
+    }
+
+    public void Fire(Person person)
+    {
+        employees.Remove(person);
+    }
+
     public bool TryToLetPersonIn(Person person)
     {
         if (employees.Contains(person))
