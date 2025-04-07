@@ -41,7 +41,7 @@ public class Simulator
         }
         foreach (Room room in rooms)
         {
-            room.AdvanceTime();
+            room.AdvanceTime(currentTime);
         }
     }
 }
