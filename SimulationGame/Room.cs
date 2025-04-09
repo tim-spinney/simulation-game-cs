@@ -3,9 +3,8 @@
 public class Room
 {
     private readonly List<Person> employees;
-    private readonly uint maxCapacity;
     private readonly ScheduleManager scheduleManager;
-    private uint currentNumGuests;
+    private readonly OccupancyManager occupancyManager;
 
     /* Preconditions:
      * - opensAt must be greater than closesAt or nobody will ever be allowed in
@@ -15,7 +14,7 @@ public class Room
     {
         this.employees = employees;
         scheduleManager = new ScheduleManager(opensAt, closesAt);
-        this.maxCapacity = maxCapacity;
+        occupancyManager = new OccupancyManager(maxCapacity);
     }
 
     public void Hire(Person person)
@@ -40,21 +39,17 @@ public class Room
         {
             return true;
         }
-        if (scheduleManager.IsOpen() && currentNumGuests < maxCapacity)
+        if (scheduleManager.IsOpen())
         {
-            currentNumGuests++;
-            return true;
+            return occupancyManager.TryAdmitPerson(person);
         }
 
         return false;
     }
 
-    public void PersonLeft()
+    public void PersonLeft(Person person)
     {
-        if (currentNumGuests > 0)
-        {
-            currentNumGuests--;
-        }
+        occupancyManager.PersonLeft(person);
     }
 
     public void AdvanceTime(uint currentTime)
