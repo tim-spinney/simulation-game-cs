@@ -3,11 +3,9 @@
 public class Room
 {
     private readonly List<Person> employees;
-    private readonly uint opensAt;
-    private readonly uint closesAt;
     private readonly uint maxCapacity;
+    private readonly ScheduleManager scheduleManager;
     private uint currentNumGuests;
-    private bool isOpen;
 
     /* Preconditions:
      * - opensAt must be greater than closesAt or nobody will ever be allowed in
@@ -16,8 +14,7 @@ public class Room
     public Room(List<Person> employees, uint opensAt, uint closesAt, uint maxCapacity)
     {
         this.employees = employees;
-        this.opensAt = opensAt;
-        this.closesAt = closesAt;
+        scheduleManager = new ScheduleManager(opensAt, closesAt);
         this.maxCapacity = maxCapacity;
     }
 
@@ -31,13 +28,19 @@ public class Room
         employees.Remove(person);
     }
 
+    /// <summary>
+    /// Checks whether the given person is currently allowed in. If they are,
+    /// counts them as one of the visitors to this Room.
+    /// </summary>
+    /// <param name="person"></param>
+    /// <returns>Whether the person was admitted into the Room.</returns>
     public bool TryToLetPersonIn(Person person)
     {
         if (employees.Contains(person))
         {
             return true;
         }
-        if (isOpen && currentNumGuests < maxCapacity)
+        if (scheduleManager.IsOpen() && currentNumGuests < maxCapacity)
         {
             currentNumGuests++;
             return true;
@@ -56,9 +59,6 @@ public class Room
 
     public void AdvanceTime(uint currentTime)
     {
-        isOpen = (currentTime % MINUTES_PER_DAY) >= opensAt && 
-                 (currentTime % MINUTES_PER_DAY) <= closesAt;
+        scheduleManager.AdvanceTime(currentTime);
     }
-
-    private const uint MINUTES_PER_DAY = 60 * 24;
 }
