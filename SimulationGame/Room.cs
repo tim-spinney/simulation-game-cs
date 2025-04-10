@@ -5,6 +5,7 @@ public class Room
     private readonly List<Person> employees;
     private readonly ScheduleManager scheduleManager;
     private readonly OccupancyManager occupancyManager;
+    private uint visitorsToday;
 
     /* Preconditions:
      * - opensAt must be greater than closesAt or nobody will ever be allowed in
@@ -50,10 +51,15 @@ public class Room
     public void PersonLeft(Person person)
     {
         occupancyManager.PersonLeft(person);
+        visitorsToday++;
     }
 
     public void AdvanceTime(uint currentTime)
     {
         scheduleManager.AdvanceTime(currentTime);
+        if (currentTime % ScheduleManager.MINUTES_PER_DAY == 0)
+        {
+            visitorsToday = 0;
+        }
     }
 }

@@ -23,5 +23,5 @@ public class ScheduleManager
     
     public bool IsOpen() { return isOpen; }
     
-    private const uint MINUTES_PER_DAY = 60 * 24;
+    public const uint MINUTES_PER_DAY = 60 * 24;
 }
