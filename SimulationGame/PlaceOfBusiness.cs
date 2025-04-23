@@ -1,6 +1,6 @@
 ﻿namespace SimulationGame;
 
-public class Room
+public class PlaceOfBusiness
 {
     private readonly List<Person> employees;
     private readonly ScheduleManager scheduleManager;
@@ -11,7 +11,7 @@ public class Room
      * - opensAt must be greater than closesAt or nobody will ever be allowed in
      * - opensAt and closesAt must be less than 1440 or nobody will ever be allowed in
      */
-    public Room(List<Person> employees, uint opensAt, uint closesAt, uint maxCapacity)
+    public PlaceOfBusiness(List<Person> employees, uint opensAt, uint closesAt, uint maxCapacity)
     {
         this.employees = employees;
         scheduleManager = new ScheduleManager(opensAt, closesAt);

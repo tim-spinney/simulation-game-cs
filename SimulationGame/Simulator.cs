@@ -3,7 +3,7 @@
 public class Simulator
 {
     private List<Person> persons;
-    private List<Room> rooms = new List<Room>();
+    private List<PlaceOfBusiness> businesses = new List<PlaceOfBusiness>();
     private uint currentTime;
 
     public Simulator()
@@ -39,7 +39,7 @@ public class Simulator
         {
             person.AdvanceTime();
         }
-        foreach (Room room in rooms)
+        foreach (PlaceOfBusiness room in businesses)
         {
             room.AdvanceTime(currentTime);
         }
