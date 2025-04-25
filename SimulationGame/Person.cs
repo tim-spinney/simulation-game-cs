@@ -8,7 +8,6 @@ public class Person
      * 2. What does a person do?
      */
     private FullName name;
-    private string lastName;
     private int hunger;
     private int energy;
     private Activity activity;
@@ -49,11 +48,14 @@ public class Person
         if (hunger > 40)
         {
             activity = Activity.Eating;
-        }
-
-        if (energy < 40)
+        } 
+        else if (energy < 40)
         {
             activity = Activity.Sleeping;
+        }
+        else
+        {
+            activity = Activity.Idling;
         }
     }
 
@@ -68,4 +70,9 @@ public class Person
     }
 
     private const int MAX_ATTRIBUTE_VALUE = 255;
+
+    public override string ToString()
+    {
+        return $"Name: {name}, Hunger: {hunger}, Energy: {energy}, Activity: {activity}";
+    }
 }

@@ -59,5 +59,7 @@ public class Simulator
         {
             room.AdvanceTime(currentTime);
         }
+        Console.WriteLine($"Time {currentTime}");
+        persons.ForEach(Console.WriteLine);
     }
 }
