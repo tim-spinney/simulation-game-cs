@@ -7,17 +7,18 @@ public class Person
      * 1.b. What do we need to know about a person from the start of their existence?
      * 2. What does a person do?
      */
-    private string firstName;
+    private FullName name;
     private string lastName;
     private int hunger;
     private int energy;
-    private uint age;
     private Activity activity;
+    private Residence? home;
 
-    public Person(string firstName, string lastName)
+    public Person(FullName name, Random rng)
     {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.name = name;
+        hunger = rng.Next(MAX_ATTRIBUTE_VALUE);
+        energy = rng.Next(MAX_ATTRIBUTE_VALUE);
     }
 
     public Activity GetActivity()
@@ -27,7 +28,7 @@ public class Person
 
     public void AdvanceTime()
     {
-        if (activity == Activity.Eating)
+        if (activity == Activity.Eating && home != null && home.TryTransferInventory(ItemType.Food, 1))
         {
             hunger -= 5;
         }
@@ -56,13 +57,15 @@ public class Person
         }
     }
 
-    public string GetName()
+    public void MoveIn(Residence residence)
     {
-        return firstName + " " + lastName;
+        home = residence;
     }
 
-    public void GetMarried(String adoptedLastName)
+    public void MoveOut()
     {
-        lastName = adoptedLastName;
+        home = null;
     }
+
+    private const int MAX_ATTRIBUTE_VALUE = 255;
 }

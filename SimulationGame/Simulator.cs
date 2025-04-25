@@ -2,17 +2,33 @@
 
 public class Simulator
 {
-    private List<Person> persons;
-    private List<PlaceOfBusiness> businesses = new List<PlaceOfBusiness>();
+    private List<Person> persons = new();
+    private List<Residence> residences = new();
+    private List<PlaceOfBusiness> businesses = new();
     private uint currentTime;
 
-    public Simulator()
+    public Simulator(uint population, uint numHomes, NameGenerator nameGenerator, Random rng)
     {
-        persons = new List<Person>();
-        
-        persons.Add(new Person("Hugh", "Mann"));
-        persons.Add(new Person("Jane", "Doe"));
-        persons.Add(new Person("Another", "person"));
+        for (uint i = 0; i < population; i++)
+        {
+            persons.Add(new Person(nameGenerator.GenerateName(), rng));
+        }
+
+        int numUnhousedPersons = persons.Count;
+        for (int i = 0; i < numHomes; i++)
+        {
+            int maxCapacity = rng.Next(4);
+            Residence residence = new Residence((uint)maxCapacity); 
+            residences.Add(residence);
+            for (int j = 0; j < maxCapacity && numUnhousedPersons > 0; j++)
+            {
+                Person person = persons[numUnhousedPersons-1];
+                residence.MovePersonIn(person);
+                person.MoveIn(residence);
+                numUnhousedPersons--;
+            }
+        }
+        // TODO: add businesses
     }
     
     public void SimulateForever()

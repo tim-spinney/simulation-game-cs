@@ -13,7 +13,7 @@ public class PlaceOfBusinessTest
 
         // Act
         placeOfBusiness.AdvanceTime(11);
-        bool wasAllowedIn = placeOfBusiness.TryToLetPersonIn(new Person("test", "test"));
+        bool wasAllowedIn = placeOfBusiness.TryToLetPersonIn(new Person(new FullName("Test", "Subject"), new Random()));
 
         // Assert
         Assert.IsFalse(wasAllowedIn);

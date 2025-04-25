@@ -9,7 +9,7 @@ public class PersonTest
     public void StartsIdle()
     {
         // Arrange
-        Person person = new Person("Test", "Subject");
+        Person person = new Person(new FullName("Test", "Subject"), new Random());
 
         // Assert
         Assert.AreEqual(Activity.Idling, person.GetActivity());
