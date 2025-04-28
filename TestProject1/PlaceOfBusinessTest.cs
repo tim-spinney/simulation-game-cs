@@ -9,7 +9,7 @@ public class PlaceOfBusinessTest
     public void NeverAllowsGuestsIfClosesBeforeOpens()
     {
         // Arrange
-        PlaceOfBusiness placeOfBusiness = new PlaceOfBusiness(new List<Person>(), 10, 5, 999);
+        PlaceOfBusiness placeOfBusiness = new PlaceOfBusiness(new List<Person>(), 10, 5, 999, new Rectangle(0, 0, 1, 1));
 
         // Act
         placeOfBusiness.AdvanceTime(11);

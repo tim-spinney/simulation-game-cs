@@ -18,7 +18,7 @@ public class Simulator
         for (int i = 0; i < numHomes; i++)
         {
             int maxCapacity = rng.Next(4);
-            Residence residence = new Residence((uint)maxCapacity); 
+            Residence residence = new Residence((uint)maxCapacity, new Rectangle(0, 0, 50, 1)); 
             residences.Add(residence);
             for (int j = 0; j < maxCapacity && numUnhousedPersons > 0; j++)
             {

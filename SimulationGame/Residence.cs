@@ -1,12 +1,13 @@
 ﻿namespace SimulationGame;
 
-public class Residence
+public class Residence : Location
 {
     private readonly uint maxCapacity;
     private HashSet<Person> residents = new();
     private Inventory inventory = new();
 
-    public Residence(uint maxCapacity)
+    public Residence(uint maxCapacity, Rectangle bounds)
+    : base(bounds)
     {
         this.maxCapacity = maxCapacity;
     }

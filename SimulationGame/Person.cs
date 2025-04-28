@@ -12,6 +12,7 @@ public class Person
     private int energy;
     private Activity activity;
     private Residence? home;
+    private Location currentLocation;
 
     public Person(FullName name, Random rng)
     {
